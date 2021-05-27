@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+</head>
+
+<body>
+
+Telefone: <input type="text" id="phone" value="">
+<br>
+Mensagem: <input type="text" id="msg" value="">
+
+<button onclick="myFunction()">Enviar</button>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("phone").value;
+  var y = document.getElementById("msg").value;
+  window.open("https://api.whatsapp.com/send?phone=5511" + x + "&text=" + y);
+}
+</script>
+
+</body>
+</html>
