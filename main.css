@@ -28,6 +28,7 @@
 body {
     margin: 0;
     background-color: #f8f9fa;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -84,7 +85,7 @@ input[type=number] {
 
 .send {
     margin-left: 25px;
-    font-family: "Roboto";
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-size: 20px;
     position: absolute;
     color: #fff;
