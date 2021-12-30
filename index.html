@@ -1,25 +1,92 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="pt-br">
 
-<meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- Required styles for Material Web -->
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <link href="http://fonts.cdnfonts.com/css/roboto" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+  <title>Whats Send</title>
+
 </head>
 
 <body>
 
-Telefone: <input type="text" id="phone" value="">
-<br>
-Mensagem: <input type="text" id="msg" value="">
 
-<button onclick="myFunction()">Enviar</button>
+  <div class="header">
+    <img class="logo" src="icons/whatsapp.png" alt="Whats Send" >
+    <h1 class="send">whats send</h1>
+  </div>
+  <div class="container">
+    <!-- Render textfield component -->
+    <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--ltr-text">
+      <span class="mdc-notched-outline">
+        <span class="mdc-notched-outline__leading"></span>
+        <span class="mdc-notched-outline__notch">
+          <span class="mdc-floating-label" id="my-label-id">Telefone</span>
+        </span>
+        <span class="mdc-notched-outline__trailing"></span>
+      </span>
+      <input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="phone"
+        class="mdc-text-field__input" aria-labelledby="my-label-id">
+    </label>
 
-<script>
-function myFunction() {
-  var x = document.getElementById("phone").value;
-  var y = document.getElementById("msg").value;
-  window.open("https://api.whatsapp.com/send?phone=5511" + x + "&text=" + y);
-}
-</script>
+    <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea  teste">
+      <span class="mdc-notched-outline">
+        <span class="mdc-notched-outline__leading"></span>
+        <span class="mdc-notched-outline__notch">
+          <span class="mdc-floating-label" id="my-label-id">Mensagem</span>
+        </span>
+        <span class="mdc-notched-outline__trailing"></span>
+      </span>
+      <span class="mdc-text-field__resizer">
+        <textarea style="overflow:hidden" id="msg" class="mdc-text-field__input"  rows="4" cols="40" maxlength="200" aria-label="Label"></textarea>
+      </span>
+    </label>
+    
+    <div class="btn">
+      <button id="btnSend" onclick="sendMsg()" class="mdc-button mdc-button--raised foo-button">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Enviar</span>
+      </button>
+    </div>
+
+  </div>
+
+
 
 </body>
+
+<script>
+  function sendMsg() {
+    var x = document.getElementById("phone").value;
+    var y = document.getElementById("msg").value;
+    window.open("https://api.whatsapp.com/send?phone=5511" + x + "&text=" + y);
+  }
+
+  var inputPhone = document.getElementById("phone");
+  inputPhone.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("btnSend").click();
+    }
+  });
+  
+</script>
+
+<!-- Required Material Web JavaScript library -->
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<!-- Instantiate single textfield component rendered in the document -->
+<script>
+  mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+  mdc.textField.MDCTextField.attachTo(document.querySelector('.teste'));
+  mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+  mdc.autoInit();
+</script>
+
 </html>
